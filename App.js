@@ -23,11 +23,27 @@ function Playlist({ navigation }) {
         <View style={styles.Bottom}>
           <View style={styles.Bar}>
           </View>
-
-
-
-
-
+        
+          <View style = {styles.picture}>
+          <Image source = {{uri:'https://zmp3-photo-fbcrawler.zmdcdn.me/avatars/6/2/4/9/62498fa513ccd6abdd5a373117353e16.jpg'}}
+          style = {{ width: 150, height: 150 }}
+            />          
+        </View>
+        <View style = {styles.picture}>
+          <Image source = {{uri:'https://media.vov.vn/sites/default/files/styles/large/public/2021-09/iu-la-ai-tinh-yeu-su-nghiep-bai-hat-cua-iu-4bb930f2.jpeg'}}
+          style = {{ width: 150, height: 150 }}
+            />          
+        </View>
+        <View style = {styles.picture}>
+          <Image source = {{uri:'https://cdn-img.thethao247.vn/storage/files/linhseo/2022/06/09/hd-wallpaper-jennie-black-dress-blackpink-black-hair-face-beauty-singer-asian-korean-cute-1654740666.jpg'}}
+          style = {{ width: 150, height: 150 }}
+            />          
+        </View>
+        <View style = {styles.picture}>
+          <Image source = {{uri:'https://zmp3-photo-fbcrawler.zmdcdn.me/avatars/6/2/4/9/62498fa513ccd6abdd5a373117353e16.jpg'}}
+          style = {{ width: 150, height: 150 }}
+            />          
+        </View>
         </View>
 
         <View style={styles.ToolBar}>
@@ -77,6 +93,10 @@ const styles = StyleSheet.create({
   Bar: {
     paddingTop: 2,
     backgroundColor: 'white',
+  },
+  picture: {
+    paddingTop: '10%',
+    paddingLeft : 25
   },
 });
 
