@@ -27,17 +27,42 @@ function Playlist({ navigation }) {
           <View style = {styles.picture}>
           <Image source = {{uri:'https://zmp3-photo-fbcrawler.zmdcdn.me/avatars/6/2/4/9/62498fa513ccd6abdd5a373117353e16.jpg'}}
           style = {{ width: 150, height: 150 }}
-            />          
+            /> 
+            <View style = {styles.songs}>
+            <Text style = {styles.textSing}>
+              Đóa Hoa Hồng
+            </Text>
+            <Text style = {styles.textSing}>
+              Chi Pu
+            </Text>
+            </View>   
+                  
         </View>
         <View style = {styles.picture}>
           <Image source = {{uri:'https://media.vov.vn/sites/default/files/styles/large/public/2021-09/iu-la-ai-tinh-yeu-su-nghiep-bai-hat-cua-iu-4bb930f2.jpeg'}}
           style = {{ width: 150, height: 150 }}
-            />          
+            />      
+             <View style = {styles.songs}>
+            <Text style = {styles.textSing}>
+              Blueming
+            </Text>
+            <Text style = {styles.textSing}>
+              IU
+            </Text>
+            </View>       
         </View>
         <View style = {styles.picture}>
           <Image source = {{uri:'https://cdn-img.thethao247.vn/storage/files/linhseo/2022/06/09/hd-wallpaper-jennie-black-dress-blackpink-black-hair-face-beauty-singer-asian-korean-cute-1654740666.jpg'}}
           style = {{ width: 150, height: 150 }}
-            />          
+            />
+             <View style = {styles.songs}>
+            <Text style = {styles.textSing}>
+              Kill this love
+            </Text>
+            <Text style = {styles.textSing}>
+              Blackpink
+            </Text>
+            </View>             
         </View>
         <View style = {styles.picture}>
           <Image source = {{uri:'https://zmp3-photo-fbcrawler.zmdcdn.me/avatars/6/2/4/9/62498fa513ccd6abdd5a373117353e16.jpg'}}
@@ -96,7 +121,20 @@ const styles = StyleSheet.create({
   },
   picture: {
     paddingTop: '10%',
-    paddingLeft : 25
+    paddingLeft : 25,
+    flexDirection: 'row'
+  },
+  textSing:{
+    paddingTop: 10,
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 20,
+    width: '100%',
+    paddingLeft : 20,
+    marginTop: 20,
+  },
+  songs:{
+    flexDirection: 'column'
   },
 });
 
