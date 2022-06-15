@@ -5,8 +5,56 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Swipeable } from 'react-native-gesture-handler';
 import { AntDesign } from '@expo/vector-icons';
 
-
+const DATA = [
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'Đóa Hoa Hồng', // max 10
+    img: 'https://zmp3-photo-fbcrawler.zmdcdn.me/avatars/6/2/4/9/62498fa513ccd6abdd5a373117353e16.jpg',
+    single: 'Chi Pu', // max 11
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: 'Money',
+    img: 'https://vnn-imgs-f.vgcloud.vn/2022/03/18/12/lisa-blackpink-vuong-vao-vu-dieu-tra-pham-luat-o-thai-lan.jpeg?width=420',
+    single: 'Lisa',
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f68',
+    title: 'Blueming',
+    img: 'https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2021/12/5/981148/IU-Anh-Doc.jpg',
+    single: 'IU',
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f64',
+    title: 'Hãy Trao Cho Anh',
+    img: 'https://static.wikia.nocookie.net/rapviet/images/c/c7/Mtp.jpg/revision/latest?cb=20190703144520&path-prefix=vi',
+    single: 'Sơn Tùng MTP',
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f60',
+    title: 'Tháng tư là lời nói dối của em',
+    img: 'https://avatar-ex-swe.nixcdn.com/singer/avatar/2018/06/27/e/8/8/5/1530074198530_600.jpg',
+    single: 'Hà Anh Tuấn',
+  },
+];
+const Item = ({ title, img, single, navigation }) => (
+  <TouchableOpacity>
+      <View style={styles.item}>
+        <Image style={styles.cdImage} source={{ uri: img }} />
+        <View style={styles.Single}>
+          <Text style={styles.nameSong} numberOfLines={1}>{title}</Text>
+          <Text style={styles.nameSingle} numberOfLines={1}>{single}</Text>
+        </View>
+        <View style={styles.iconPlay}>
+          <View style={styles.iconPlay}>
+            <Ionicons name="md-play-circle-sharp" size={50} color="white" />
+          </View>
+        </View>
+      </View>
+  </TouchableOpacity>
+);
 function Playlist({ navigation }) {
+  const renderItem = ({ item }) => <Item title={item.title} img={item.img} single={item.single} />;
   return (
     <LinearGradient
       colors={["#1565C0", "#000"]}
@@ -24,52 +72,8 @@ function Playlist({ navigation }) {
           <View style={styles.Bar}>
           </View>
         
-          <View style = {styles.picture}>
-          <Image source = {{uri:'https://zmp3-photo-fbcrawler.zmdcdn.me/avatars/6/2/4/9/62498fa513ccd6abdd5a373117353e16.jpg'}}
-          style = {{ width: 150, height: 150 }}
-            /> 
-            <View style = {styles.songs}>
-            <Text style = {styles.textSing}>
-              Đóa Hoa Hồng
-            </Text>
-            <Text style = {styles.textSing}>
-              Chi Pu
-            </Text>
-            </View>   
-                  
-        </View>
-        <View style = {styles.picture}>
-          <Image source = {{uri:'https://media.vov.vn/sites/default/files/styles/large/public/2021-09/iu-la-ai-tinh-yeu-su-nghiep-bai-hat-cua-iu-4bb930f2.jpeg'}}
-          style = {{ width: 150, height: 150 }}
-            />      
-             <View style = {styles.songs}>
-            <Text style = {styles.textSing}>
-              Blueming
-            </Text>
-            <Text style = {styles.textSing}>
-              IU
-            </Text>
-            </View>       
-        </View>
-        <View style = {styles.picture}>
-          <Image source = {{uri:'https://cdn-img.thethao247.vn/storage/files/linhseo/2022/06/09/hd-wallpaper-jennie-black-dress-blackpink-black-hair-face-beauty-singer-asian-korean-cute-1654740666.jpg'}}
-          style = {{ width: 150, height: 150 }}
-            />
-             <View style = {styles.songs}>
-            <Text style = {styles.textSing}>
-              Kill this love
-            </Text>
-            <Text style = {styles.textSing}>
-              Blackpink
-            </Text>
-            </View>             
-        </View>
-        <View style = {styles.picture}>
-          <Image source = {{uri:'https://zmp3-photo-fbcrawler.zmdcdn.me/avatars/6/2/4/9/62498fa513ccd6abdd5a373117353e16.jpg'}}
-          style = {{ width: 150, height: 150 }}
-            />          
-        </View>
-        </View>
+          <FlatList data={DATA} renderItem={renderItem} keyExtractor={item => item.id} />
+          </View>
 
         <View style={styles.ToolBar}>
 
@@ -135,6 +139,48 @@ const styles = StyleSheet.create({
   },
   songs:{
     flexDirection: 'column'
+  },
+  item: {
+    flex: 1,
+    flexDirection: 'row',
+    //backgroundColor: '#201E21',
+    borderRadius: 20,
+    padding: 27,
+    marginVertical: 7,
+    marginHorizontal: 10,
+    alignItems: 'center',
+    height: '80%',
+    width: '100%'
+  },
+  nameSong: {
+    paddingLeft: '10%',
+    fontWeight: 'bold',
+    color: 'white',
+    fontSize: 20,
+    flex: 1,
+  },
+  nameSingle: {
+    paddingLeft: '10%',
+    fontWeight: 'bold',
+    color: '#928989',
+    fontSize: 15,
+    opacity: 100,
+    flex: 1,
+  },
+  cdImage: {
+    width: '23%',
+    height: '150%',
+    borderRadius: 0,
+  },
+  Single: {
+    flex: 1,
+    flexDirection: 'column',
+    paddingLeft: '3%',
+    width: '100%',
+  },
+  iconPlay: {
+    flex: 1,
+    paddingLeft: '15%',
   },
 });
 
