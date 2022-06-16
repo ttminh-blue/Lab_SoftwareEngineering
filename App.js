@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList, Button } from 'react-native';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar, TouchableOpacity, Image } from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
@@ -8,9 +8,9 @@ import { AntDesign } from '@expo/vector-icons';
 const DATA = [
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'Đóa Hoa Hồng', // max 10
+    title: 'Đóa Hoa Hồng', 
     img: 'https://zmp3-photo-fbcrawler.zmdcdn.me/avatars/6/2/4/9/62498fa513ccd6abdd5a373117353e16.jpg',
-    single: 'Chi Pu', // max 11
+    single: 'Chi Pu', 
   },
   {
     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
@@ -37,8 +37,29 @@ const DATA = [
     single: 'Hà Anh Tuấn',
   },
 ];
-const Item = ({ title, img, single, navigation }) => (
+const renderRightView = (onDeleteHandler) => {
+  return (
+    <View style={styles.swipe}>
+      <TouchableOpacity
+        onPress={(e) => {
+          onDeleteHandler(e)
+        }
+        }
+      >
+        <View style={styles.ButtonDelete}>
+         
+          <AntDesign name="delete" size={27} color="white" />
+        
+        </View>
+      </TouchableOpacity>
+    </View>
+  )
+};
+const Item = ({ title, img, single }) => (
   <TouchableOpacity>
+    <Swipeable
+      renderRightActions={renderRightView}
+    >
       <View style={styles.item}>
         <Image style={styles.cdImage} source={{ uri: img }} />
         <View style={styles.Single}>
@@ -51,10 +72,12 @@ const Item = ({ title, img, single, navigation }) => (
           </View>
         </View>
       </View>
+    </Swipeable>
   </TouchableOpacity>
 );
-function Playlist({ navigation }) {
-  const renderItem = ({ item }) => <Item title={item.title} img={item.img} single={item.single} />;
+
+function Playlist() {
+  const renderItem = ({ item }) => <Item title={item.title} img={item.img} single={item.single}/>;
   return (
     <LinearGradient
       colors={["#1565C0", "#000"]}
@@ -63,7 +86,7 @@ function Playlist({ navigation }) {
     >
       <View style={styles.container}>
         <View style={styles.header}>
-          <TouchableOpacity style={styles.iconHeader}>
+          <TouchableOpacity style={styles.iconHeader} >
             <Ionicons name="ios-chevron-back" size={40} color="white" fontWeight='bold' />
           </TouchableOpacity>
           <Text style={styles.textHeader} >My Playlist</Text>
@@ -71,9 +94,13 @@ function Playlist({ navigation }) {
         <View style={styles.Bottom}>
           <View style={styles.Bar}>
           </View>
-        
+
+
           <FlatList data={DATA} renderItem={renderItem} keyExtractor={item => item.id} />
-          </View>
+
+
+
+        </View>
 
         <View style={styles.ToolBar}>
 
@@ -123,22 +150,24 @@ const styles = StyleSheet.create({
     paddingTop: 2,
     backgroundColor: 'white',
   },
-  picture: {
-    paddingTop: '10%',
-    paddingLeft : 25,
-    flexDirection: 'row'
+  Song: {
+    flexDirection: 'row',
+    marginTop: '5%',
+    width: '80%',
+    height: '10%',
+    borderRadius: 32,
+    backgroundColor: 'black',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: '10%',
+
   },
-  textSing:{
-    paddingTop: 10,
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 20,
-    width: '100%',
-    paddingLeft : 20,
-    marginTop: 20,
-  },
-  songs:{
-    flexDirection: 'column'
+  avatarmini: {
+    width: '20%',
+    height: '100%',
+    borderRadius: 100,
+    backgroundColor: 'blue',
+    marginLeft: '-43%',
   },
   item: {
     flex: 1,
@@ -181,6 +210,27 @@ const styles = StyleSheet.create({
   iconPlay: {
     flex: 1,
     paddingLeft: '15%',
+  },
+  swipe: {
+    margin: 0,
+    alignContent: 'center',
+    justifyContent: 'center',
+    width: 90,
+  },
+  ButtonDelete: {
+    top: '15%',
+    left: '28%',
+    width: '80%',
+    height: '70%',
+    backgroundColor: 'red',
+    color: 'red',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius:  10,
+  },
+  TextDelete:{
+    fontSize: 17,
+    color: 'white'
   },
 });
 
